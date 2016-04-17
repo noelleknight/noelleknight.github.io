@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+  <div> Modular JS for Noobs… like me
+
+    I recently took up programming. Over the past six weeks as I have begun learning JavaScript I began implementing a practice that has helped me immensely with code organization. This practice is referred to as Modular JavaScript. What it means, is basically that applications are broken down into standalone pieces of functionality. The way I think about it, is that each module has a single responsibility or goal, and once that thing is accomplished, that particular module is complete and it is time to move onto the next piece.
+
+    While discussing Modular JavaScript, it is important to note that there are a number of formats and tools for Javascript file and module loading. AMD (Asynchronous Module Definition) is a format in which the JS modules and dependencies are asynchronously loaded. The AMD format has two major components. The Define method is used to define your JS modules, while the Require method is used to retrieve dependencies. Some specific frameworks for AMD are RequireJS and CurlJS. This article takes a more detailed look at specific Modular JS frameworks.
+
+    The approach I will demonstrate today, was very helpful to me when I began implementing the use of modules in my code. A very simple way to do this is to separate data and UI (User Interface). Below is a JS application that is meant to retrieve some data from GitHub about a few organizations and display that data to the user by showing the organization name and image.
+
+    (function() {
+      'use strict';
+      var ghOrgs = '/data.json';
+      buttonToList = function buttonToList () {
+        $.ajax({
+          type: 'GET',
+          url: 'https://api.github.com/user',
+          dataype: 'json',
+          success: function showghOrgs (data){
+            data.forEach(function getInfo(element) {
+              ns.renderOrg(element);
+            });
+          },
+          complete: function requestDone() {
+            console.log('All Done!');
+          }
+        });
+      };
+      $('button').on('click', function(event) {
+        .buttonToList();
+        console.log("I work!");
+      });
+      function renderOrg (element) {
+        $('ul')
+        .addClass('background')
+        .append('<li>')
+          .find('li:last-child')
+          .append('<p>')
+            .find('p')
+            .append('<img>')
+            .find('img')
+            .attr('src', element.avatar_url)
+            .end() //this goes out one find
+            .append(element.login);
+          }
+        })();
+
+
+        We can use Modular JS to avoid getting lost in our code. It will also help us when it comes to refactoring. If functionality is separated into different modules, then when we go to edit one piece, we can avoid ‘breaking’ everything.
+
+        I have split this GitHub orgs application into two modules, one represents data and the other UI. This first module is using an Ajax request to retrieve the data necessary for this application:
+
+        (function(ns) {
+          'use strict';
+          var ghOrgs = '/data.json';
+          ns.buttonToList = function buttonToList () {
+            $.ajax({
+              type: 'GET',
+              url: 'https://api.github.com/user',
+              dataype: 'json',
+              success: function showghOrgs (data){
+                data.forEach(function getInfo(element) {
+                  ns.renderOrg(element);
+                });
+              },
+              complete: function requestDone() {
+                console.log('All Done!');
+              }
+            });
+          };
+          window.gitOrg = ns;
+        })(window.gitOrg || {});
+
+        This module takes the data we retrieved and appends it to the html page for the user to see:
+
+        (function(ns) {
+          'use strict';
+          $('button').on('click', function(event) {
+            ns.buttonToList();
+            console.log("I work!");
+          });
+          function renderOrg (element) {
+            $('ul')
+            .addClass('background')
+            .append('<li>')
+              .find('li:last-child')
+              .append('<p>')
+                .find('p')
+                .append('<img>')
+                .find('img')
+                .attr('src', element.avatar_url)
+                .end() //this goes out one find
+                .append(element.login);
+              }
+              ns.renderOrg = renderOrg;
+              window.gitOrg = ns;
+            })(window.gitOrg || {});
+
+            We can link these two modules in our script tags, like so:
+
+            <script src='http://code.jquery.com/jquery-2.2.2.min.js'></script>
+            <script src='githubOrgs-data.js'> </script>
+            <script src='githubOrgs-ui.js'> </script>
+
+
+            As you can see from these two examples. The code that is separated into modules is concise and easier to read. Each module has a specific role in relation to the application. In our case one handles data, while the other deals with UI. So when you begin to explore Modular JS, a good way to get your feet wet is to simply split data and UI.
+
+            As you get more comfortable with this structure begin breaking up functionality even more and also utilizing frameworks. When a function becomes really long, you are repeating yourself, or you are doing multiple things in one function; those are all solid indicators you should break it out. Always strive for simple, readable JavaScript, happy coding!
+
+
+          </div>
+        </body>
+        </html>
