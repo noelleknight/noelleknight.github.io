@@ -5,11 +5,29 @@
   background-color: #F3228A;
   top: 0; }
 
+.profilePic {
+  width: 140px;
+  height: 160px;
+  position: absolute;
+  top: 25px;
+  left: 10%;
+  border-radius: 50%;
+  z-index: 99;
+  border: 3px solid #fff;
+  background-color: #fff; }
+
 .container {
-  margin-top: 15%; }
+  margin-top: 10%; }
 
 p {
   font-size: .7em;
-  font-family: 'Poiret One', cursive; }
+  font-family: 'Poiret One', cursive;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 2%;
+  margin-bottom: 3%; }
+
+.code {
+  text-align: center; }
 
 /*# sourceMappingURL=myBlog.css.map */

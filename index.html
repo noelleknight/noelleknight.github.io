@@ -11,7 +11,9 @@
   <title>Modular JS for Noobs</title>
 </head>
 <body>
-  <div class="banner"></div>
+  <div class="banner">
+    <img src="./Images/rsz_profilepic.jpg" class="profilePic">
+  </div>
   <h2> Modular JS for Noobs… <span>like me</span> <h2>
   <div class="container">
     <p>
@@ -23,22 +25,30 @@
     <p>
       The approach I will demonstrate today, was very helpful to me when I began implementing the use of modules in my code. A very simple way to do this is to separate data and UI (User Interface). Below is a JS application that is meant to retrieve some data from GitHub about a few organizations and display that data to the user by showing the organization name and image.
     </p>
+    <div class="code">
     <img src="./Images/One.png" alt="">
+  </div>
     <p>
       We can use Modular JS to avoid getting lost in our code. It will also help us when it comes to refactoring. If functionality is separated into different modules, then when we go to edit one piece, we can avoid ‘breaking’ everything.
     </p>
     <p>
       I have split this GitHub orgs application into two modules, one represents data and the other UI. This first module is using an Ajax request to retrieve the data necessary for this application:
     </p>
+    <div class="code">
     <img src="./Images/Two.png" alt="">
+  </div>
     <p>
       This module takes the data we retrieved and appends it to the html page for the user to see:
     </p>
-    <img src="./Images/Three.png" alt="">
+    <div class="code">
+    <img src="./Images/Three.png" alt="" class="code">
+  </div>
     <p>
       We can link these two modules in our script tags, like so:
     </p>
-    <img src="./Images/Four.png" alt="">
+    <div class="code">
+    <img src="./Images/Four.png" alt="" class="code">
+  </div>
     <p>
       As you can see from these two examples. The code that is separated into modules is concise and easier to read. Each module has a specific role in relation to the application. In our case one handles data, while the other deals with UI. So when you begin to explore Modular JS, a good way to get your feet wet is to simply split data and UI.
     </p>
