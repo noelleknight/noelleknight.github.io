@@ -21,7 +21,7 @@
   <p>
     The approach I will demonstrate today, was very helpful to me when I began implementing the use of modules in my code. A very simple way to do this is to separate data and UI (User Interface). Below is a JS application that is meant to retrieve some data from GitHub about a few organizations and display that data to the user by showing the organization name and image.
   </p>
-  <pre>
+  <code><pre>
     <ol>
   <li>  (function() {   </li>
   <li>    'use strict'; </li>
@@ -60,7 +60,7 @@
   <li>        } </li>
   <li>      })(); </li>
     </ol>
-      </pre>
+  </pre></code>
 
       <p>
           We can use Modular JS to avoid getting lost in our code. It will also help us when it comes to refactoring. If functionality is separated into different modules, then when we go to edit one piece, we can avoid ‘breaking’ everything.
@@ -120,7 +120,7 @@
     <li>          window.gitOrg = ns; </li>
     <li>        })(window.gitOrg || {});  </li>
   </ol>
-    <pre>
+</pre>
         <p>
             We can link these two modules in our script tags, like so:
         </p>
