@@ -5,137 +5,46 @@
   <meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Inconsolata|Montserrat|Poiret+One' rel='stylesheet' type='text/css'>
   <link rel='stylesheet' type='text/css' href='normalize.css'>
-  <link rel='stylesheet' type='text/css' href='myBlog.css'>
+  <link rel='stylesheet' type='text/css' href='css/myBlog.css'>
   <title>Modular JS for Noobs</title>
 </head>
 <body>
+  <div class="banner"></div>
   <h2> Modular JS for Noobs… <span>like me</span> <h2>
-
-  <p>
-      I recently took up programming. Over the past six weeks as I have begun learning JavaScript I began implementing a practice that has helped me immensely with code organization. This practice is referred to as Modular JavaScript. What it means, is basically that applications are broken down into standalone pieces of functionality. The way I think about it, is that each module has a single responsibility or goal, and once that thing is accomplished, that particular module is complete and it is time to move onto the next piece.
-  </p>
-  <p>
-    While discussing Modular JavaScript, it is important to note that there are a number of formats and tools for Javascript file and module loading. AMD (Asynchronous Module Definition) is a format in which the JS modules and dependencies are asynchronously loaded. The AMD format has two major components. The Define method is used to define your JS modules, while the Require method is used to retrieve dependencies. Some specific frameworks for AMD are RequireJS and CurlJS. This article takes a more detailed look at specific Modular JS frameworks.
-  </p>
-  <p>
-    The approach I will demonstrate today, was very helpful to me when I began implementing the use of modules in my code. A very simple way to do this is to separate data and UI (User Interface). Below is a JS application that is meant to retrieve some data from GitHub about a few organizations and display that data to the user by showing the organization name and image.
-  </p>
-  <code><pre>
-    <ol>
-  <li>  (function() {   </li>
-  <li>    'use strict'; </li>
-  <li>    var ghOrgs = '/data.json';  </li>
-  <li>    buttonToList = function buttonToList () { </li>
-  <li>      $.ajax({  </li>
-  <li>        type: 'GET',  </li>
-  <li>        url: 'https://api.github.com/user', </li>
-  <li>        dataype: 'json',  </li>
-  <li>        success: function showghOrgs (data){  </li>
-  <li>          data.forEach(function getInfo(element) {  </li>
-  <li>            ns.renderOrg(element);  </li>
-  <li>          }); </li>
-  <li>        },  </li>
-  <li>        complete: function requestDone() {  </li>
-  <li>          console.log('All Done!'); </li>
-  <li>        } </li>
-  <li>      }); </li>
-  <li>    };  </li>
-  <li>    $('button').on('click', function(event) { </li>
-  <li>      .buttonToList();  </li>
-  <li>      console.log("I work!"); </li>
-  <li>    }); </li>
-  <li>    function renderOrg (element) {  </li>
-  <li>      $('ul') </li>
-  <li>      .addClass('background') </li>
-  <li>      .append('<li>') </li>
-  <li>        .find('li:last-child')  </li>
-  <li>        .append('<p>')  </li>
-  <li>          .find('p')  </li>
-  <li>          .append('<img>')  </li>
-  <li>          .find('img')  </li>
-  <li>          .attr('src', element.avatar_url)  </li>
-  <li>          .end() //this goes out one find </li>
-  <li>          .append(element.login); </li>
-  <li>        } </li>
-  <li>      })(); </li>
-    </ol>
-  </pre></code>
-
-      <p>
-          We can use Modular JS to avoid getting lost in our code. It will also help us when it comes to refactoring. If functionality is separated into different modules, then when we go to edit one piece, we can avoid ‘breaking’ everything.
-      </p>
-      <p>
-        I have split this GitHub orgs application into two modules, one represents data and the other UI. This first module is using an Ajax request to retrieve the data necessary for this application:
-      </p>
-      <pre>
-      </ol>
-  <li>      (function(ns) { </li>
-  <li>        'use strict'; </li>
-  <li>        var ghOrgs = '/data.json';  </li>
-  <li>        ns.buttonToList = function buttonToList () {  </li>
-  <li>          $.ajax({  </li>
-  <li>            type: 'GET',  </li>
-  <li>            url: 'https://api.github.com/user', </li>
-  <li>            dataype: 'json',  </li>
-  <li>            success: function showghOrgs (data){  </li>
-  <li>              data.forEach(function getInfo(element) {  </li>
-  <li>                ns.renderOrg(element);  </li>
-  <li>              }); </li>
-  <li>            },  </li>
-  <li>            complete: function requestDone() {  </li>
-  <li>              console.log('All Done!'); </li>
-  <li>            } </li>
-  <li>          }); </li>
-  <li>        };  </li>
-  <li>        window.gitOrg = ns; </li>
-  <li>      })(window.gitOrg || {});  </li>
-</ol>
-</pre>
+  <div class="container">
     <p>
-        This module takes the data we retrieved and appends it to the html page for the user to see:
+      I recently took up programming. Over the past six weeks as I have begun learning JavaScript I began implementing a practice that has helped me immensely with code organization. This practice is referred to as Modular JavaScript. What it means, is basically that applications are broken down into standalone pieces of functionality. The way I think about it, is that each module has a single responsibility or goal, and once that thing is accomplished, that particular module is complete and it is time to move onto the next piece.
     </p>
-    <pre>
-      <ol>
-    <li>    (function(ns) { </li>
-    <li>      'use strict'; </li>
-    <li>      $('button').on('click', function(event) { </li>
-    <li>        ns.buttonToList();  </li>
-    <li>        console.log("I work!"); </li>
-    <li>      }); </li>
-    <li>      function renderOrg (element) {  </li>
-    <li>        $('ul') </li>
-    <li>        .addClass('background') </li>
-    <li>        .append('<li>') </li>
-    <li>          .find('li:last-child')  </li>
-    <li>          .append('<p>')  </li>
-    <li>            .find('p')  </li>
-    <li>            .append('<img>')  </li>
-    <li>            .find('img')  </li>
-    <li>            .attr('src', element.avatar_url)  </li>
-    <li>            .end() //this goes out one find </li>
-    <li>            .append(element.login); </li>
-    <li>          } </li>
-    <li>          ns.renderOrg = renderOrg; </li>
-    <li>          window.gitOrg = ns; </li>
-    <li>        })(window.gitOrg || {});  </li>
-  </ol>
-</pre>
-        <p>
-            We can link these two modules in our script tags, like so:
-        </p>
-        <pre>
-          <ol>
-    <li>        <script src='http://code.jquery.com/jquery-2.2.2.min.js'></script>  </li>
-    <li>        <script src='githubOrgs-data.js'> </script> </li>
-    <li>        <script src='githubOrgs-ui.js'> </script> </li>
-  </ol>
-</pre>
-        <p>
-            As you can see from these two examples. The code that is separated into modules is concise and easier to read. Each module has a specific role in relation to the application. In our case one handles data, while the other deals with UI. So when you begin to explore Modular JS, a good way to get your feet wet is to simply split data and UI.
-        </p>
-        <p>
-            As you get more comfortable with this structure begin breaking up functionality even more and also utilizing frameworks. When a function becomes really long, you are repeating yourself, or you are doing multiple things in one function; those are all solid indicators you should break it out. Always strive for simple, readable JavaScript, happy coding!
-        </p>
-        </body>
-        </html>
+    <p>
+      While discussing Modular JavaScript, it is important to note that there are a number of formats and tools for Javascript file and module loading. AMD (Asynchronous Module Definition) is a format in which the JS modules and dependencies are asynchronously loaded. The AMD format has two major components. The Define method is used to define your JS modules, while the Require method is used to retrieve dependencies. Some specific frameworks for AMD are RequireJS and CurlJS. This article takes a more detailed look at specific Modular JS frameworks.
+    </p>
+    <p>
+      The approach I will demonstrate today, was very helpful to me when I began implementing the use of modules in my code. A very simple way to do this is to separate data and UI (User Interface). Below is a JS application that is meant to retrieve some data from GitHub about a few organizations and display that data to the user by showing the organization name and image.
+    </p>
+    <img src="./Images/One.png" alt="">
+    <p>
+      We can use Modular JS to avoid getting lost in our code. It will also help us when it comes to refactoring. If functionality is separated into different modules, then when we go to edit one piece, we can avoid ‘breaking’ everything.
+    </p>
+    <p>
+      I have split this GitHub orgs application into two modules, one represents data and the other UI. This first module is using an Ajax request to retrieve the data necessary for this application:
+    </p>
+    <img src="./Images/Two.png" alt="">
+    <p>
+      This module takes the data we retrieved and appends it to the html page for the user to see:
+    </p>
+    <img src="./Images/Three.png" alt="">
+    <p>
+      We can link these two modules in our script tags, like so:
+    </p>
+    <img src="./Images/Four.png" alt="">
+    <p>
+      As you can see from these two examples. The code that is separated into modules is concise and easier to read. Each module has a specific role in relation to the application. In our case one handles data, while the other deals with UI. So when you begin to explore Modular JS, a good way to get your feet wet is to simply split data and UI.
+    </p>
+    <p>
+      As you get more comfortable with this structure begin breaking up functionality even more and also utilizing frameworks. When a function becomes really long, you are repeating yourself, or you are doing multiple things in one function; those are all solid indicators you should break it out. Always strive for simple, readable JavaScript, happy coding!
+    </p>
+  </div>
+  </body>
+  </html>
