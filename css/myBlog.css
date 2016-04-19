@@ -1,27 +1,40 @@
 .banner {
   width: 100%;
-  height: 20%;
+  height: 30%;
   position: fixed;
   background-color: #F3228A;
   top: 0; }
 
+h2 {
+  font-family: 'Poiret One', cursive;
+  font-weight: bolder; }
+
+.small {
+  font-size: 25px;
+  font-weight: bolder; }
+
+.post-date {
+  color: #D5DBDE;
+  font-family: 'Montserrat';
+  font-weight: lighter;
+  font-size: 20px; }
+
 .profilePic {
-  width: 140px;
-  height: 160px;
+  left: 0;
+  width: 190px;
+  height: 190px;
   position: absolute;
-  top: 25px;
-  left: 10%;
-  border-radius: 50%;
-  z-index: 99;
+  top: 90px;
   border: 3px solid #fff;
   background-color: #fff; }
 
 .container {
-  margin-top: 10%; }
+  margin-top: 15%; }
 
 p {
   font-size: .7em;
-  font-family: 'Poiret One', cursive;
+  font-family: 'Molengo', sans-serif;
+  font-weight: 100;
   margin-left: 5%;
   margin-right: 5%;
   margin-top: 2%;
